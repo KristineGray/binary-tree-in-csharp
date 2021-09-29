@@ -4,20 +4,73 @@ namespace binaryTree
     public class BinaryTree
     {
         private int[] _orderedList;
+        private int[] _binarySearchSortedList;
 
-        public Node RootNode
-        { get; set;}
+        public int Depth { get; set; }
+        public Node RootNode { get; set;}
 
 
         public BinaryTree(int[] orderedList)
         {
             this._orderedList = orderedList;
+            this.Depth = GetDepth(orderedList.Length);
+            this.RootNode = new Node(orderedList[orderedList.Length/2]);
+            SetChildrenNodes(this.RootNode);
         }
+
+        private int GetDepth(int listLength)
+        {
+            double logarithm = Math.Log2(listLength);
+            if (logarithm == Math.Truncate(logarithm))
+            {
+                return Convert.ToInt32(logarithm);
+            }
+            else
+            {
+                return Convert.ToInt32(Math.Ceiling(logarithm));
+            }
+        }
+
+        private void SetChildrenNodes(Node parentNode)
+        {
+            // Should set both children of the node specified
+            int parentIndex = Array.IndexOf(this._orderedList, parentNode.Value);
+
+            int leftEndIndex = parentIndex - 1;
+            this.RootNode.LeftChild = new Node(this._orderedList[leftEndIndex/2]);
+
+
+            int rightStartIndex = parentIndex + 1;
+            int rightLength = this._orderedList.Length - rightStartIndex;
+            int rightCtrIndex;
+            if (rightLength % 2 == 0)
+            {
+                rightCtrIndex = parentIndex + (rightLength / 2);
+            }
+            else
+            {
+                rightCtrIndex = parentIndex + (rightLength / 2) + 1;
+            }
+            this.RootNode.RightChild = new Node(this._orderedList[rightCtrIndex]);
+        }
+
 
         private void ConvertOrderedListToTree()
         {
             
         }
+
+
+
+
+
+
+
+
+
+
+
+
         //private void ConvertOrderedListToTree()
         //{
         //    this.SplitListInHalf = this._orderedList;
