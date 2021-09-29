@@ -19,17 +19,14 @@ namespace binaryTree
         static void Main(string[] args)
         {
             int[] orderedList = { 1, 2, 3, 4, 8, 9, 10, 14, 18, 20, 30};
+            //int[] orderedList = { 1, 2, 3, 4, 8, 9, 10};
 
             BinaryTree testTree = new(orderedList);
 
-            Console.WriteLine($"The length is {orderedList.Length} items\nThe depth of the binary tree is {testTree.Depth} levels\nThe value of the Root Node is {testTree.RootNode.Value}");
+            Console.WriteLine($"The length of the array is {orderedList.Length} items\nThe depth of the binary tree is {testTree.Depth} levels\nThe value of the Root Node is {testTree.RootNode.Value}");
+
+            Console.WriteLine($"Does the root node have a parent? {testTree.RootNode.Parent != null}");
             
-            Console.WriteLine($"\nThe value of the left child node is {testTree.RootNode.LeftChild.Value}\nThe value of the right child node is {testTree.RootNode.RightChild.Value}");
-            
-            //Console.WriteLine($"\nThe value of the left-left grandchild node is {testTree.RootNode.LeftChild.LeftChild.Value}");
-           // Console.WriteLine($"\nThe value of the left-right grandchild node is {testTree.RootNode.LeftChild.RightChild.Value}");
-           // Console.WriteLine($"\nThe value of the right-left grandchild node is {testTree.RootNode.RightChild.LeftChild.Value}");
-          //  Console.WriteLine($"\nThe value of the right-right grandchild node is {testTree.RootNode.RightChild.RightChild.Value}");
             
             Console.ReadKey();
 
